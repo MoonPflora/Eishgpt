@@ -1,0 +1,130 @@
+{
+  "sulaymaniyah": {
+    "kurdish": "سلێمانی",
+    "aliases": ["slemani", "سلێمانی", "sulaymani", "sulaymaniyah", "سلێمانى", "سلێمانیه", "sulaimaniah", "sulaimaniya"]
+  },
+  "erbil": {
+    "kurdish": "هەولێر",
+    "aliases": ["erbil", "hawler", "هەولێر", "اربيل", "arbil", "hewelêr"]
+  },
+  "duhok": {
+    "kurdish": "دهۆک",
+    "aliases": ["duhok", "dohuk", "دهۆک", "دهوك", "dihok"]
+  },
+  "halabja": {
+    "kurdish": "هه‌ڵه‌بجه‌",
+    "aliases": ["halabja", "هه‌ڵه‌بجه‌", "حلبجة", "helebce"]
+  },
+  "kirkuk": {
+    "kurdish": "که‌ركووك",
+    "aliases": ["kirkuk", "کرکوک", "که‌ركووك", "kerkuk", "كرکوك"]
+  },
+  "akre": {
+    "kurdish": "ئاکرێ",
+    "aliases": ["akre", "akrê", "ئاکرێ", "aqrah", "عقرة"]
+  },
+  "zakho": {
+    "kurdish": "زاخۆ",
+    "aliases": ["zakho", "زاخۆ", "زاخو"]
+  },
+  "rawanduz": {
+    "kurdish": "ڕەواندز",
+    "aliases": ["rawanduz", "rawandz", "ڕەواندز", "رواندوز"]
+  },
+  "ranya": {
+    "kurdish": "ڕانیە",
+    "aliases": ["ranya", "ڕانیە", "رانيا"]
+  },
+  "kalar": {
+    "kurdish": "که‌لار",
+    "aliases": ["kalar", "که‌لار", "كلار"]
+  },
+  "khanaqin": {
+    "kurdish": "خانەقین",
+    "aliases": ["khanaqin", "خانەقین", "خانقين"]
+  },
+  "kifri": {
+    "kurdish": "کفری",
+    "aliases": ["kifri", "کفری", "كفري"]
+  },
+  "penjwen": {
+    "kurdish": "پنجوێن",
+    "aliases": ["penjwen", "پنجوێن", "پنجه وين"]
+  },
+  "qaradagh": {
+    "kurdish": "قه‌ره‌ده‌غ",
+    "aliases": ["qaradagh", "qeredax", "قه‌ره‌ده‌غ"]
+  },
+  "soran": {
+    "kurdish": "سۆران",
+    "aliases": ["soran", "سۆران", "سوران"]
+  },
+  "choman": {
+    "kurdish": "چۆمان",
+    "aliases": ["choman", "چۆمان", "جومان"]
+  },
+  "bardarash": {
+    "kurdish": "برده‌رش",
+    "aliases": ["bardarash", "برده‌رش", "بردرش"]
+  },
+  "sharazur": {
+    "kurdish": "شارەزوور",
+    "aliases": ["sharazur", "شارەزوور", "شارزور"]
+  },
+  "baghdad": {
+    "kurdish": "بەغداد",
+    "aliases": ["baghdad", "بەغداد", "بغداد"]
+  },
+  "basrah": {
+    "kurdish": "بەسڕە",
+    "aliases": ["basrah", "basra", "بەسڕە", "البصرة", "بصرة"]
+  },
+  "najaf": {
+    "kurdish": "نجەف",
+    "aliases": ["najaf", "النجف", "نجەف", "نجف"]
+  },
+  "karbala": {
+    "kurdish": "کەربەلا",
+    "aliases": ["karbala", "کەربەلا", "كربلاء", "كربلا"]
+  },
+  "mosul": {
+    "kurdish": "مووسڵ",
+    "aliases": ["mosul", "مووسڵ", "الموصل"]
+  },
+  "diwaniyah": {
+    "kurdish": "دیوانیە",
+    "aliases": ["diwaniyah", "diwaniya", "دیوانیە", "الديوانية"]
+  },
+  "samawah": {
+    "kurdish": "سەماوە",
+    "aliases": ["samawah", "سەماوە", "السماوة"]
+  },
+  "kut": {
+    "kurdish": "کوت",
+    "aliases": ["kut", "کوت", "الكوت"]
+  },
+  "nasiriyah": {
+    "kurdish": "نەصیریە",
+    "aliases": ["nasiriyah", "nassiriya", "نەصیریە", "الناصرية"]
+  },
+  "amarah": {
+    "kurdish": "عەماره‌",
+    "aliases": ["amarah", "عمارة", "عەماره‌"]
+  },
+  "baqubah": {
+    "kurdish": "بعقوبه",
+    "aliases": ["baqubah", "baquba", "بعقوبه", "بعقوبة"]
+  },
+  "fallujah": {
+    "kurdish": "فه‌لوجه‌",
+    "aliases": ["fallujah", "فالوجة", "فه‌لوجه‌"]
+  },
+  "ramadi": {
+    "kurdish": "ڕه‌مادی",
+    "aliases": ["ramadi", "الرمادي", "ڕه‌مادی"]
+  },
+  "tuz": {
+    "kurdish": "توزخورماتوو",
+    "aliases": ["tuz khurmatu", "توزخورماتوو", "توز خورماتو"]
+  }
+}

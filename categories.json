@@ -1,0 +1,58 @@
+{
+  "IT": {
+    "kurdish": "کۆمپیتەر و IT",
+    "keywords": ["web", "developer", "network","IT","Software","database","data entry","Computer","Hardware","programming","full stack","coding"]
+  },
+  "Medical": {
+    "kurdish": "پزیشکی", 
+    "keywords": ["doctor", "nurse", "Medical", "pharmacy","radiology","hematology","lab","medicine","pharmacist","dentist","dentistry","Cosmetic doctor","plastic surgeon","surgeon"]
+  },
+"Sales/Retail/Marketing": {
+    "kurdish": "کڕین و فرۆشتن و مارکێتیین",
+    "keywords": ["Sales","real estate","Marketing", "Retail","Salesperson","cashier","Social Media","warehouse","market","supermarket","advertising"]
+  },
+"Managment/Adminstration": {
+    "kurdish": "بەرێوبردن",
+    "keywords": ["HR", "managment", "manager","logistic","quality control","admin","assistant","secretary","Human resource"]
+  },
+"Graphic design/ Video editing": {
+    "kurdish": "گرافیک / ڤیدیۆ دیساین",
+    "keywords": ["graphic design", "video editer", "graphic","editing","Motion graphic","after effect","photoshop","camera","socail media","page","brand"]
+  },
+"Construction/Labor": {
+    "kurdish": "بیناکاری و کرێکاری",
+    "keywords": ["operator","construction","drill", "labor", "worker","forklift","brick","cement","wood","paint","roof","floor","tile"]
+  },
+"Engineering": {
+    "kurdish": "هەندەسە",
+    "keywords": ["Engineer", "Engineering", "Electric"]
+  },
+"Education": {
+    "kurdish": "پەروەردە و مامۆستایی",
+    "keywords": ["Teach", "mentor", "Education","teaching","Kinder garden","highschool","basic school","Language","translat","daycare","day care"]
+  },
+"Energy/Oil": {
+    "kurdish": "نەوت و وزە",
+    "keywords": ["Oil", "Solar", "energy"]
+  },
+"Hotel/Resturaunts/Cleaning": {
+    "kurdish": "هوتێل و خواردن و پاکردنەوە",
+    "keywords": ["chef", "barista", "cleaning","fast food","cleaner","hotel","restaurant","cook","waiter","captain","service","food","drink","diner"]
+  },
+"Driver": {
+    "kurdish": "سایەقی",
+    "keywords": ["driver", "driving", "bus","taxi","van","truck"]
+  },
+"Security": {
+    "kurdish": "پاسەوانی",
+    "keywords": ["Security","guard"]
+  },
+"Security": {
+    "kurdish": "پاسەوانی",
+    "keywords": ["Security","guard"]
+  },
+"Other": {
+    "kurdish": "هیتر",
+    "keywords": ["Other"]
+  }
+}

@@ -1,0 +1,29 @@
+
+
+[Title]-هەلی کار❗️ 
+[category]-جۆر
+[location]-ناونیشان📍
+[salary]-موچە💰
+[requirements]-🧾پێداویستی
+[description]-📋ناوەرۆک
+[contact]-پەیوەندی📞
+[image] 
+
+Post format
+Job Opertrunity!!!
+-Title: [title].
+-Salary: [salary].
+-Location:[location].
+-Requirements: [req].
+-Description: [des].
+-Contacts: [contact]
+
+
+#KurdistanJobsCentral
+
+
+Bot:
+Welcome message
+سڵاو 👋، من سارام👩‍💼
+🌟 Kurdistan Jobs Central 🌟 بەخێربێیت بۆ  
+چۆن دەتوانم یارمەتیت بدەم؟ 😊

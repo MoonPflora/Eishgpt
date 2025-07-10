@@ -1,0 +1,26 @@
+{
+  "builds": [
+    {
+      "src": "runner.py",
+      "use": "@railway/python",
+      "config": {
+        "pythonVersion": "3.11.9",
+        "installCommand": "pip install -r requirements.txt || echo 'No requirements.txt'"
+      }
+    }
+  ],
+  "deploy": {
+    "startCommand": "python runner.py",
+    "environment": {
+      "PYTHONUNBUFFERED": "1",
+      "PYTHONHASHSEED": "42",
+      "TZ": "UTC" 
+    }
+  },
+  "scripts": {
+    "postDeploy": {
+      "command": "echo 'Deployment complete'",
+      "timeout": 10
+    }
+  }
+}
