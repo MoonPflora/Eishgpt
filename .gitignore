@@ -3,3 +3,5 @@
 ".msixbundle" 
 "user_data/images/" 
 "__pycache__/" 
+"huugingface_token.txt" 
+"*.txt"   # Optional: block all text files
