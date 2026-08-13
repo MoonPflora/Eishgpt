@@ -12,55 +12,86 @@ Eishgpt is a comprehensive job management system that:
 - Has a premium subscription system (disabled by default)
 
 ## System Flowchart
-graph TD
-    subgraph "Scheduler"
-        A["4-hour Pipeline Execution"] -->|"Run every 4 hours"| B["Execute scheduled scripts"]
-        B --> C["telegram_scraper.py"]
-        C --> D["scrape_cleaner.py"]
-        D --> E["eishgpt_job_processor.py"]
-        E --> F["ocr.py"]
-        F --> G["image_processor.py"]
-        G --> H["admin_job_loader.py"]
-        H --> I["job_poster.py"]
-        I --> J["admin_poster.py"]
-        J --> K["poster.py"]
-        K --> L["master_cleaner.py"]
-    end
++---------------------------+
+|         SCHEDULER         |
++---------------------------+
+  4‑hour Pipeline Execution
+       │
+       ▼
+  Execute scheduled scripts
+       │
+       ▼
+  telegram_scraper.py
+       │
+       ▼
+  scrape_cleaner.py
+       │
+       ▼
+  eishgpt_job_processor.py
+       │
+       ▼
+  ocr.py
+       │
+       ▼
+  image_processor.py
+       │
+       ▼
+  admin_job_loader.py
+       │
+       ▼
+  job_poster.py
+       │
+       ▼
+  admin_poster.py
+       │
+       ▼
+  poster.py
+       │
+       ▼
+  master_cleaner.py
 
-    subgraph "Bot Capabilities"
-        UserCmd["User Commands"] --> StartCmd["/start - Welcome"]
-        UserCmd --> SearchCmd["/search - Job search"]
-        UserCmd --> SubmitCmd["/submit - Job submission"]
-        UserCmd --> PremiumCmd["/premium - Subscription"]
-        AdminCmds["Admin Commands"] --> AdminPanel["/admin - Panel access"]
-        AdminCmds --> ValidateCmd["/validate - Job validation"]
-        AdminCmds --> StatsCmd["/stats - System stats"]
-        AutoProcesses["Automated Processes"] --> Captcha["CAPTCHA verification"]
-        AutoProcesses --> JobApproval["Job approval workflow"]
-        AutoProcesses --> PremiumMgmt["Premium subscription management"]
-    end
++---------------------------+
+|      BOT CAPABILITIES     |
++---------------------------+
+  User Commands
+    ├── /start – Welcome
+    ├── /search – Job search
+    ├── /submit – Job submission
+    └── /premium – Subscription
 
-    subgraph "Data Flow"
-        T["scraped_jobs.json"] -->|"Process"| U["eishgpt_job_processor.py"]
-        V["processed_jobs.json"] -->|"Post"| W["job_poster.py"]
-        X["user_submissions.json"] -->|"Load"| Y["admin_job_loader.py"]
-        Z["processed.json"] -->|"Post"| AA["admin_poster.py"]
-    end
+  Admin Commands
+    ├── /admin – Panel access
+    ├── /validate – Job validation
+    └── /stats – System stats
 
-    subgraph "System Components"
-        AB["telegram_scraper.py"] -->|"Scrapes"| AC["Channels"]
-        AD["eishgpt_job_processor.py"] -->|"Normalizes"| AE["Jobs"]
-        AF["job_poster.py"] -->|"Posts"| AG["Channels"]
-        AH["master_cleaner.py"] -->|"Cleans"| AI["Data"]
-        AJ["payment_handler.py"] -->|"Processes"| AK["Payments"]
-    end
+  Automated Processes
+    ├── CAPTCHA verification
+    ├── Job approval workflow
+    └── Premium subscription management
 
-    subgraph "External Integrations"
-        AL["Telegram API"] -->|"Interacts"| AM["Bot"]
-        AN["FastPay"] -->|"Processes"| AO["Payments"]
-        AP["SQLite"] -->|"Stores"| AQ["Data"]
-    end
++---------------------------+
+|        DATA FLOW          |
++---------------------------+
+  scraped_jobs.json  ──Process──►  eishgpt_job_processor.py
+  processed_jobs.json ──Post───►  job_poster.py
+  user_submissions.json ──Load──►  admin_job_loader.py
+  processed.json ──Post───────►  admin_poster.py
 
++---------------------------+
+|     SYSTEM COMPONENTS     |
++---------------------------+
+  telegram_scraper.py  ──Scrapes──►  Channels
+  eishgpt_job_processor.py ──Normalizes──►  Jobs
+  job_poster.py  ──Posts──►  Channels
+  master_cleaner.py  ──Cleans──►  Data
+  payment_handler.py  ──Processes──►  Payments
+
++---------------------------+
+|   EXTERNAL INTEGRATIONS   |
++---------------------------+
+  Telegram API  ──Interacts──►  Bot
+  FastPay  ──Processes──►  Payments
+  SQLite  ──Stores──►  Data
 ## Setup
 
 1. Clone the repository
