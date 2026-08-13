@@ -1,7 +1,34 @@
-"" 
-".exe" 
-".msixbundle" 
-"user_data/images/" 
-"__pycache__/" 
-"huugingface_token.txt" 
-"*.txt"   # Optional: block all text files
+# Environment variables
+.env
+.env.local
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+
+# Lock files
+*.lock
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Temporary files
+.tmp/
+.store/
+tmp/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

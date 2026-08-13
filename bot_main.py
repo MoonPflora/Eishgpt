@@ -22,7 +22,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('bot.log'),
+        logging.FileHandler(os.getenv('LOG_FILE', 'bot.log')),
         logging.StreamHandler()
     ]
 )
@@ -44,18 +44,24 @@ if is_already_running():
     sys.exit(1)
 
 # Load environment
-load_dotenv("env/.env")
+load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 ADMIN = os.getenv("ADMIN")
+ADMIN_CODE = os.getenv("ADMIN_CODE")
+PAYMENT_PHONE_NUMBER = os.getenv("PAYMENT_PHONE_NUMBER")
+PAYMENT_IMAGE_PATH = os.getenv("PAYMENT_IMAGE_PATH")
+FREE_USER_DB_PATH = os.getenv("FREE_USER_DB_PATH")
+PREMIUM_USER_DB_PATH = os.getenv("PREMIUM_USER_DB_PATH")
+LOG_FILE = os.getenv("LOG_FILE")
 
 if not BOT_TOKEN:
-    logger.error("❌ BOT_TOKEN missing in .env!")
+    logger.error("❌ BOT_TOKEN missing in.env!")
     sys.exit(1)
 
 try:
     ADMIN = int(ADMIN)
 except (ValueError, TypeError):
-    logger.error("❌ ADMIN must be a valid integer Telegram user ID in .env")
+    logger.error("❌ ADMIN must be a valid integer Telegram user ID in.env")
     sys.exit(1)
 
 PERMANENT_ADMINS = {ADMIN}
@@ -64,9 +70,8 @@ PERMANENT_ADMINS = {ADMIN}
 bot = TeleBot(BOT_TOKEN, parse_mode="HTML")
 admin_sessions = set()
 searcher = JobSearcher()
-ADMIN_CODE = "787898rawa"
 user_search_states = {}
-captcha_states = {}  # ✅ Captcha user state
+captcha_states = {} # ✅ Captcha user state
 
 # Initialize databases
 init_free_user_db()
@@ -141,7 +146,7 @@ def send_welcome(message):
     keyboard.add(types.KeyboardButton("💎 خەزنکردنی CV"))
     bot.send_message(
         message.chat.id,
-        "سڵاو 👋، من سارام👩‍💼\n🌟 بەخێربێیت بۆ Kurdistan Jobs Central 🌟\nچۆن دەتوانم یارمەتیت بدەم؟ 😊",
+        "سڵاو 👋، من سارام👩💼\n🌟 بەخێربێیت بۆ Kurdistan Jobs Central 🌟\nچۆن دەتوانم یارمەتیت بدەم؟ 😊",
         reply_markup=keyboard
     )
 
@@ -176,9 +181,9 @@ def handle_auto_apply(call):
 @bot.message_handler(func=lambda msg: msg.text == "🔍 گەڕان بۆ کار")
 def start_search(message):
     user_id = message.chat.id
-   # if not is_premium(user_id) and not can_free_user_search(user_id):
-    #    bot.send_message(user_id, "🚫 تەنها جارێک دەتوانی گەڕان بکەیت بەبێ بەشداربوون.")
-    #    return
+    # if not is_premium(user_id) and not can_free_user_search(user_id):
+    # bot.send_message(user_id, "🚫 تەنها جارێک دەتوانی گەڕان بکەیت بەبێ بەشداربوون.")
+    # return
 
     keyboard = []
     for cat_key, cat_data in searcher.categories.items():
@@ -195,7 +200,7 @@ def select_category(call):
     user_state.current_job_index = 0
     user_state.results = []
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
-                          text="📍 تکایە شوێن هەڵبژێرە:", reply_markup=create_location_keyboard())
+        text="📍 تکایە شوێن هەڵبژێرە:", reply_markup=create_location_keyboard())
 
 @bot.callback_query_handler(func=lambda call: call.data.startswith("location:"))
 def select_location(call):
@@ -215,7 +220,7 @@ def select_location(call):
     user_state.current_job_index = 0
     user_state.results = []
     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
-                          text="⏳ ماوەی گەڕان هەڵبژێرە:", reply_markup=create_time_filter_keyboard())
+        text="⏳ ماوەی گەڕان هەڵبژێرە:", reply_markup=create_time_filter_keyboard())
 
 @bot.callback_query_handler(func=lambda call: call.data.startswith("time_filter:"))
 def select_time_filter(call):
@@ -224,15 +229,15 @@ def select_time_filter(call):
     user_state.time_filter = days
 
     results = searcher.search(category_key=user_state.category,
-                              location_input=user_state.normalized_location,
-                              max_days=user_state.time_filter)
+        location_input=user_state.normalized_location,
+        max_days=user_state.time_filter)
 
     user_state.results = results
     user_state.current_job_index = 0
 
     if not results:
         bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
-                              text="❌ هیچ کارێک نەدۆزرایەوە بەپێی هەڵبژاردنەکانت!")
+            text="❌ هیچ کارێک نەدۆزرایەوە بەپێی هەڵبژاردنەکانت!")
         return
 
     show_job_result(call.message, user_state)
@@ -285,7 +290,7 @@ def handle_nav(call):
 def handle_payment_plan(call):
     user_id = call.from_user.id
     chat_id = call.message.chat.id
-    plan_days = call.data.split("_")[1]  # '30', '60', or '90'
+    plan_days = call.data.split("_")[1] # '30', '60', or '90'
     today = datetime.now().strftime("%d/%m/%Y")
 
     prices = {
@@ -298,14 +303,13 @@ def handle_payment_plan(call):
     message_code = f"{user_id}/{plan_days}/{today}"
 
     try:
-        with open("payment.jpg", "rb") as photo:
-            phone_number="\200E0770 039 8258"
+        with open(PAYMENT_IMAGE_PATH, "rb") as photo:
             bot.send_photo(
                 chat_id,
                 photo,
                 caption=(
                     f"💸 تکایە <b>{amount_text}</b> بنێرە بۆ پلانی {plan_days} ڕۆژ:\n\n"
-                    f"📲 بۆ: <b>{phone_number}</b> لەسەر FastPay\n\n"
+                    f"📲 بۆ: <b>{PAYMENT_PHONE_NUMBER}</b> لەسەر FastPay\n\n"
                     f"📝 لە خانەی نوسین، ئەم نامەیە بنووسە (بە تەواوی وەک خوارەوە):\n"
                     f"<code>{message_code}</code>\n\n"
                     f"⚠️ ئاگاداری! ئەگەر ئەم نامەیە نەتۆمار بکەیت یان هەڵەیەک لە ناوەوە بێت، ناتوانین پارەکەت بگرین.\n"
@@ -317,15 +321,14 @@ def handle_payment_plan(call):
         logger.error(f"Couldn't send payment.jpg: {e}")
         bot.send_message(chat_id, "❌ ناتوانرێت وێنەی پارەدان بنێردرێت، تکایە پەیوەندیم پێوە بکە.")
 
-
 @bot.message_handler(func=lambda msg: msg.text == "💎 بەشداریکردن")
 def handle_subscription_check(message):
     user_id = message.chat.id
     try:
-        conn = sqlite3.connect("user_data/premium_users.db")
+        conn = sqlite3.connect(PREMIUM_USER_DB_PATH)
         cursor = conn.cursor()
         cursor.execute(
-            "SELECT end_date FROM premium_users WHERE user_id = ? AND end_date > datetime('now')",
+            "SELECT end_date FROM premium_users WHERE user_id =? AND end_date > datetime('now')",
             (user_id,)
         )
         row = cursor.fetchone()
@@ -360,8 +363,8 @@ def handle_subscription_check(message):
 # Main loop
 
 if __name__ == "__main__":
-    logger.info("✅ Initializing databases...")
+    logger.info("✅ Initializing databases.")
     init_payment_db()
     init_free_user_db()
-    logger.info("✅ Starting bot...")
+    logger.info("✅ Starting bot.")
     bot.polling(none_stop=True)
