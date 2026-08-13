@@ -12,86 +12,9 @@ Eishgpt is a comprehensive job management system that:
 - Has a premium subscription system (disabled by default)
 
 ## System Flowchart
-+---------------------------+
-|         SCHEDULER         |
-+---------------------------+
-  4‑hour Pipeline Execution
-       │
-       ▼
-  Execute scheduled scripts
-       │
-       ▼
-  telegram_scraper.py
-       │
-       ▼
-  scrape_cleaner.py
-       │
-       ▼
-  eishgpt_job_processor.py
-       │
-       ▼
-  ocr.py
-       │
-       ▼
-  image_processor.py
-       │
-       ▼
-  admin_job_loader.py
-       │
-       ▼
-  job_poster.py
-       │
-       ▼
-  admin_poster.py
-       │
-       ▼
-  poster.py
-       │
-       ▼
-  master_cleaner.py
 
-+---------------------------+
-|      BOT CAPABILITIES     |
-+---------------------------+
-  User Commands
-    ├── /start – Welcome
-    ├── /search – Job search
-    ├── /submit – Job submission
-    └── /premium – Subscription
+![Alt text for the image](flow.png)
 
-  Admin Commands
-    ├── /admin – Panel access
-    ├── /validate – Job validation
-    └── /stats – System stats
-
-  Automated Processes
-    ├── CAPTCHA verification
-    ├── Job approval workflow
-    └── Premium subscription management
-
-+---------------------------+
-|        DATA FLOW          |
-+---------------------------+
-  scraped_jobs.json  ──Process──►  eishgpt_job_processor.py
-  processed_jobs.json ──Post───►  job_poster.py
-  user_submissions.json ──Load──►  admin_job_loader.py
-  processed.json ──Post───────►  admin_poster.py
-
-+---------------------------+
-|     SYSTEM COMPONENTS     |
-+---------------------------+
-  telegram_scraper.py  ──Scrapes──►  Channels
-  eishgpt_job_processor.py ──Normalizes──►  Jobs
-  job_poster.py  ──Posts──►  Channels
-  master_cleaner.py  ──Cleans──►  Data
-  payment_handler.py  ──Processes──►  Payments
-
-+---------------------------+
-|   EXTERNAL INTEGRATIONS   |
-+---------------------------+
-  Telegram API  ──Interacts──►  Bot
-  FastPay  ──Processes──►  Payments
-  SQLite  ──Stores──►  Data
 ## Setup
 
 1. Clone the repository
