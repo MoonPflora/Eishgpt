@@ -59,6 +59,34 @@ def cleanup_repository():
         except Exception as e:
             print(f"Error removing {file}: {e}")
 
+    # Remove images and other media files
+    image_dirs = [
+        'User_data/images',
+        'Scraped_data/images',
+        'Linkedin_data/images'
+    ]
+
+    for dir in image_dirs:
+        try:
+            shutil.rmtree(dir)
+            print(f"Removed image directory: {dir}")
+        except Exception as e:
+            print(f"Error removing {dir}: {e}")
+
+    # Remove session files
+    session_files = [
+        'Scraper/anon.session',
+        'Scraper/session_name.session',
+        'Scraper/telegram_scraper_session.session'
+    ]
+
+    for file in session_files:
+        try:
+            os.remove(file)
+            print(f"Removed session file: {file}")
+        except Exception as e:
+            print(f"Error removing {file}: {e}")
+
     print("Repository cleanup completed.")
 
 if __name__ == "__main__":
