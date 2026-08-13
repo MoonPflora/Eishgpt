@@ -13,54 +13,55 @@ Eishgpt is a comprehensive job management system that:
 
 ## System Flowchart
 
-```
-Eishgpt System Flowchart
+```mermaid
+flowchart TD
+    subgraph Scheduler
+        A[4-hour Pipeline Execution] -->|Run every 4 hours| B[Execute scheduled scripts]
+        B --> C[telegram_scraper.py]
+        C --> D[scrape_cleaner.py]
+        D --> E[eishgpt_job_processor.py]
+        E --> F[ocr.py]
+        F --> G[image_processor.py]
+        G --> H[admin_job_loader.py]
+        H --> I[job_poster.py]
+        I --> J[admin_poster.py]
+        J --> K[poster.py]
+        K --> L[master_cleaner.py]
+    end
 
-1. [Scheduler]
-   - Daily Scraping: 03:00 AM
-     - Scrape job postings from configured channels
-     - Save raw data to Scraped_data/scraped_jobs.json
-   - Weekly Cleanup: Sunday 02:00 AM
-     - Remove jobs older than MAX_JOB_AGE
-     - Clean Scraped_data/junk.json
-     - Update Admin_jobs/ocr_status.json
-   - Monthly Maintenance: 1st of month 01:00 AM
-     - Backup databases
-     - Run premium_id_cleaner.py
-     - Update Processed_data/posted_jobs.json.backup
+    subgraph Bot Capabilities
+        G[User Commands] --> H[/start - Welcome]
+        G --> I[/search - Job search]
+        G --> J[/submit - Job submission]
+        G --> K[/premium - Subscription]
+        L[Admin Commands] --> M[/admin - Panel access]
+        L --> N[/validate - Job validation]
+        L --> O[/stats - System stats]
+        P[Automated Processes] --> Q[CAPTCHA verification]
+        P --> R[Job approval workflow]
+        P --> S[Premium subscription management]
+    end
 
-2. [Bot Capabilities]
-   - User Commands:
-     - /start - Welcome message
-     - /search - Job search interface
-     - /submit - Job submission form
-     - /premium - Subscription options
-   - Admin Commands:
-     - /admin - Admin panel access
-     - /validate - Job validation interface
-     - /stats - System statistics
-   - Automated Processes:
-     - CAPTCHA verification for submissions
-     - Job approval workflow
-     - Premium subscription management
+    subgraph Data Flow
+        T[scraped_jobs.json] -->|Process| U[Eichgpt_job_processor.py]
+        V[processed_jobs.json] -->|Post| W[Job_poster.py]
+        X[user_submissions.json] -->|Load| Y[Admin_job_loader.py]
+        Z[processed.json] -->|Post| AA[Admin_poster.py]
+    end
 
-3. [Data Flow]
-   - Scraped_data/scraped_jobs.json -> Eichgpt_job_processor.py
-   - Processed_data/processed_jobs.json -> Job_poster.py
-   - User_data/user_submissions.json -> Admin_job_loader.py
-   - Admin_jobs/processed.json -> Admin_poster.py
+    subgraph System Components
+        AB[Telegram_scraper.py] -->|Scrapes| AC[Channels]
+        AD[Eichgpt_job_processor.py] -->|Normalizes| AE[Jobs]
+        AF[Job_poster.py] -->|Posts| AG[Channels]
+        AH[Master_cleaner.py] -->|Cleans| AI[Data]
+        AJ[Payment_handler.py] -->|Processes| AK[Payments]
+    end
 
-4. [System Components]
-   - Telegram_scraper.py - Handles channel scraping
-   - Eichgpt_job_processor.py - Normalizes and processes jobs
-   - Job_poster.py - Posts approved jobs to channels
-   - Master_cleaner.py - Manages scheduled cleanup
-   - Payment_handler.py - Processes premium subscriptions
-
-5. [External Integrations]
-   - Telegram API - For bot interactions
-   - FastPay - For payment processing
-   - SQLite - For database storage
+    subgraph External Integrations
+        AL[Telegram API] -->|Interacts| AM[Bot]
+        AN[FastPay] -->|Processes| AO[Payments]
+        AP[SQLite] -->|Stores| AQ[Data]
+    end
 ```
 
 ## Setup
@@ -93,7 +94,7 @@ Never commit `.env` files or sensitive data. All credentials must be loaded from
 ## Features
 
 ### Core Functionality
-- Job scraping from multiple channels
+- Job scraping from multiple channels (every 4 hours)
 - Data normalization and transformation
 - AI-powered job processing pipeline
 - Scheduled job cleanup and maintenance
