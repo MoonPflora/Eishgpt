@@ -12,54 +12,53 @@ Eishgpt is a comprehensive job management system that:
 - Has a premium subscription system (disabled by default)
 
 ## System Flowchart
-
-flowchart TD
-    subgraph Scheduler
-        A[4-hour Pipeline Execution] -->|Run every 4 hours| B[Execute scheduled scripts]
-        B --> C[telegram_scraper.py]
-        C --> D[scrape_cleaner.py]
-        D --> E[eishgpt_job_processor.py]
-        E --> F[ocr.py]
-        F --> G[image_processor.py]
-        G --> H[admin_job_loader.py]
-        H --> I[job_poster.py]
-        I --> J[admin_poster.py]
-        J --> K[poster.py]
-        K --> L[master_cleaner.py]
+graph TD
+    subgraph "Scheduler"
+        A["4-hour Pipeline Execution"] -->|"Run every 4 hours"| B["Execute scheduled scripts"]
+        B --> C["telegram_scraper.py"]
+        C --> D["scrape_cleaner.py"]
+        D --> E["eishgpt_job_processor.py"]
+        E --> F["ocr.py"]
+        F --> G["image_processor.py"]
+        G --> H["admin_job_loader.py"]
+        H --> I["job_poster.py"]
+        I --> J["admin_poster.py"]
+        J --> K["poster.py"]
+        K --> L["master_cleaner.py"]
     end
 
-    subgraph Bot Capabilities
-        UserCmd[User Commands] --> StartCmd[/start - Welcome]
-        UserCmd --> SearchCmd[/search - Job search]
-        UserCmd --> SubmitCmd[/submit - Job submission]
-        UserCmd --> PremiumCmd[/premium - Subscription]
-        AdminCmds[Admin Commands] --> AdminPanel[/admin - Panel access]
-        AdminCmds --> ValidateCmd[/validate - Job validation]
-        AdminCmds --> StatsCmd[/stats - System stats]
-        AutoProcesses[Automated Processes] --> Captcha[CAPTCHA verification]
-        AutoProcesses --> JobApproval[Job approval workflow]
-        AutoProcesses --> PremiumMgmt[Premium subscription management]
+    subgraph "Bot Capabilities"
+        UserCmd["User Commands"] --> StartCmd["/start - Welcome"]
+        UserCmd --> SearchCmd["/search - Job search"]
+        UserCmd --> SubmitCmd["/submit - Job submission"]
+        UserCmd --> PremiumCmd["/premium - Subscription"]
+        AdminCmds["Admin Commands"] --> AdminPanel["/admin - Panel access"]
+        AdminCmds --> ValidateCmd["/validate - Job validation"]
+        AdminCmds --> StatsCmd["/stats - System stats"]
+        AutoProcesses["Automated Processes"] --> Captcha["CAPTCHA verification"]
+        AutoProcesses --> JobApproval["Job approval workflow"]
+        AutoProcesses --> PremiumMgmt["Premium subscription management"]
     end
 
-    subgraph Data Flow
-        T[scraped_jobs.json] -->|Process| U[eishgpt_job_processor.py]
-        V[processed_jobs.json] -->|Post| W[job_poster.py]
-        X[user_submissions.json] -->|Load| Y[admin_job_loader.py]
-        Z[processed.json] -->|Post| AA[admin_poster.py]
+    subgraph "Data Flow"
+        T["scraped_jobs.json"] -->|"Process"| U["eishgpt_job_processor.py"]
+        V["processed_jobs.json"] -->|"Post"| W["job_poster.py"]
+        X["user_submissions.json"] -->|"Load"| Y["admin_job_loader.py"]
+        Z["processed.json"] -->|"Post"| AA["admin_poster.py"]
     end
 
-    subgraph System Components
-        AB[telegram_scraper.py] -->|Scrapes| AC[Channels]
-        AD[eishgpt_job_processor.py] -->|Normalizes| AE[Jobs]
-        AF[job_poster.py] -->|Posts| AG[Channels]
-        AH[master_cleaner.py] -->|Cleans| AI[Data]
-        AJ[payment_handler.py] -->|Processes| AK[Payments]
+    subgraph "System Components"
+        AB["telegram_scraper.py"] -->|"Scrapes"| AC["Channels"]
+        AD["eishgpt_job_processor.py"] -->|"Normalizes"| AE["Jobs"]
+        AF["job_poster.py"] -->|"Posts"| AG["Channels"]
+        AH["master_cleaner.py"] -->|"Cleans"| AI["Data"]
+        AJ["payment_handler.py"] -->|"Processes"| AK["Payments"]
     end
 
-    subgraph External Integrations
-        AL[Telegram API] -->|Interacts| AM[Bot]
-        AN[FastPay] -->|Processes| AO[Payments]
-        AP[SQLite] -->|Stores| AQ[Data]
+    subgraph "External Integrations"
+        AL["Telegram API"] -->|"Interacts"| AM["Bot"]
+        AN["FastPay"] -->|"Processes"| AO["Payments"]
+        AP["SQLite"] -->|"Stores"| AQ["Data"]
     end
 
 ## Setup
