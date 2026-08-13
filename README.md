@@ -13,7 +13,6 @@ Eishgpt is a comprehensive job management system that:
 
 ## System Flowchart
 
-```mermaid
 flowchart TD
     subgraph Scheduler
         A[4-hour Pipeline Execution] -->|Run every 4 hours| B[Execute scheduled scripts]
@@ -30,31 +29,31 @@ flowchart TD
     end
 
     subgraph Bot Capabilities
-        G[User Commands] --> H[/start - Welcome]
-        G --> I[/search - Job search]
-        G --> J[/submit - Job submission]
-        G --> K[/premium - Subscription]
-        L[Admin Commands] --> M[/admin - Panel access]
-        L --> N[/validate - Job validation]
-        L --> O[/stats - System stats]
-        P[Automated Processes] --> Q[CAPTCHA verification]
-        P --> R[Job approval workflow]
-        P --> S[Premium subscription management]
+        UserCmd[User Commands] --> StartCmd[/start - Welcome]
+        UserCmd --> SearchCmd[/search - Job search]
+        UserCmd --> SubmitCmd[/submit - Job submission]
+        UserCmd --> PremiumCmd[/premium - Subscription]
+        AdminCmds[Admin Commands] --> AdminPanel[/admin - Panel access]
+        AdminCmds --> ValidateCmd[/validate - Job validation]
+        AdminCmds --> StatsCmd[/stats - System stats]
+        AutoProcesses[Automated Processes] --> Captcha[CAPTCHA verification]
+        AutoProcesses --> JobApproval[Job approval workflow]
+        AutoProcesses --> PremiumMgmt[Premium subscription management]
     end
 
     subgraph Data Flow
-        T[scraped_jobs.json] -->|Process| U[Eichgpt_job_processor.py]
-        V[processed_jobs.json] -->|Post| W[Job_poster.py]
-        X[user_submissions.json] -->|Load| Y[Admin_job_loader.py]
-        Z[processed.json] -->|Post| AA[Admin_poster.py]
+        T[scraped_jobs.json] -->|Process| U[eishgpt_job_processor.py]
+        V[processed_jobs.json] -->|Post| W[job_poster.py]
+        X[user_submissions.json] -->|Load| Y[admin_job_loader.py]
+        Z[processed.json] -->|Post| AA[admin_poster.py]
     end
 
     subgraph System Components
-        AB[Telegram_scraper.py] -->|Scrapes| AC[Channels]
-        AD[Eichgpt_job_processor.py] -->|Normalizes| AE[Jobs]
-        AF[Job_poster.py] -->|Posts| AG[Channels]
-        AH[Master_cleaner.py] -->|Cleans| AI[Data]
-        AJ[Payment_handler.py] -->|Processes| AK[Payments]
+        AB[telegram_scraper.py] -->|Scrapes| AC[Channels]
+        AD[eishgpt_job_processor.py] -->|Normalizes| AE[Jobs]
+        AF[job_poster.py] -->|Posts| AG[Channels]
+        AH[master_cleaner.py] -->|Cleans| AI[Data]
+        AJ[payment_handler.py] -->|Processes| AK[Payments]
     end
 
     subgraph External Integrations
@@ -62,7 +61,6 @@ flowchart TD
         AN[FastPay] -->|Processes| AO[Payments]
         AP[SQLite] -->|Stores| AQ[Data]
     end
-```
 
 ## Setup
 
