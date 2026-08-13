@@ -1,0 +1,47 @@
+Eishgpt System Flowchart
+
+1. [Scheduler]
+   - Daily Scraping: 03:00 AM
+     - Scrape job postings from configured channels
+     - Save raw data to Scraped_data/scraped_jobs.json
+   - Weekly Cleanup: Sunday 02:00 AM
+     - Remove jobs older than MAX_JOB_AGE
+     - Clean Scraped_data/junk.json
+     - Update Admin_jobs/ocr_status.json
+   - Monthly Maintenance: 1st of month 01:00 AM
+     - Backup databases
+     - Run premium_id_cleaner.py
+     - Update Processed_data/posted_jobs.json.backup
+
+2. [Bot Capabilities]
+   - User Commands:
+     - /start - Welcome message
+     - /search - Job search interface
+     - /submit - Job submission form
+     - /premium - Subscription options
+   - Admin Commands:
+     - /admin - Admin panel access
+     - /validate - Job validation interface
+     - /stats - System statistics
+   - Automated Processes:
+     - CAPTCHA verification for submissions
+     - Job approval workflow
+     - Premium subscription management
+
+3. [Data Flow]
+   - Scraped_data/scraped_jobs.json -> Eichgpt_job_processor.py
+   - Processed_data/processed_jobs.json -> Job_poster.py
+   - User_data/user_submissions.json -> Admin_job_loader.py
+   - Admin_jobs/processed.json -> Admin_poster.py
+
+4. [System Components]
+   - Telegram_scraper.py - Handles channel scraping
+   - Eichgpt_job_processor.py - Normalizes and processes jobs
+   - Job_poster.py - Posts approved jobs to channels
+   - Master_cleaner.py - Manages scheduled cleanup
+   - Payment_handler.py - Processes premium subscriptions
+
+5. [External Integrations]
+   - Telegram API - For bot interactions
+   - FastPay - For payment processing
+   - SQLite - For database storage
